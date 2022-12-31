@@ -1,0 +1,10 @@
+{
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "algs4.jar",
+        "checkstyle-lift.jar"
+    ],
+    "java.project.sourcePaths": [
+        "."
+    ]
+}
