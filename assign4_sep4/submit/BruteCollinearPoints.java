@@ -4,6 +4,7 @@ import java.util.Arrays;
 public class BruteCollinearPoints {
    private int length = 0;
    private Point[] myPoints;
+   private LineSegment[] finalResult;
 
    public BruteCollinearPoints(Point[] points) // finds all line segments containing 4 points
    {
@@ -35,11 +36,17 @@ public class BruteCollinearPoints {
 
    public int numberOfSegments() // the number of line segments
    {
-      return length;
+      finalResult = segments();
+      return finalResult.length;
    }
 
    public LineSegment[] segments() // the line segments
    {
+      if (finalResult != null) {
+         LineSegment[] ret = new LineSegment[finalResult.length];
+         System.arraycopy(finalResult, 0, ret, 0, finalResult.length);
+         return ret;
+      }
       int len = myPoints.length;
 
       LineSegment[] result = new LineSegment[len];
@@ -91,24 +98,22 @@ public class BruteCollinearPoints {
             }
          }
       }
-      System.out.println("RES size = " + res);
-      // for (int i = 0; i < res; i++) {
-      // System.out.print(" |||-- >" + result[i].toString());
-      // }
       int cc = 0;
       for (int i = 0; i < result.length; i++) {
          if (result[i] != null)
             ++cc;
       }
 
-      LineSegment final_result[] = new LineSegment[cc];
+      finalResult = new LineSegment[cc];
       int j = 0;
       for (int i = 0; i < result.length; i++) {
          if (result[i] != null)
-            final_result[j++] = result[i];
+            finalResult[j++] = result[i];
       }
 
-      return final_result;
+      LineSegment[] ret = new LineSegment[finalResult.length];
+      System.arraycopy(finalResult, 0, ret, 0, finalResult.length);
+      return ret;
    }
 
    public static void main(String[] args) {
@@ -147,11 +152,19 @@ public class BruteCollinearPoints {
       // inputPoints[3] = new Point(1, 1);
       // inputPoints[4] = new Point(0, 0);
       // inputPoints[5] = new Point(5, 5);
-      BruteCollinearPoints bc = new BruteCollinearPoints(inputPoints);
+      // int retry = 10;
+      // BruteCollinearPoints bc = new BruteCollinearPoints(inputPoints);
+      // while (retry-- > 0) {
+      // bc.numberOfSegments();
 
-      for (LineSegment s : bc.segments()) {
-         System.out.println("->" + s);
-      }
+      // for (LineSegment s : bc.segments()) {
+      // System.out.println("->" + s);
+      // if (s == null)
+      // System.out.println("-> NULLLLLL..");
+      // }
+      // System.out.println("Len0 = " + bc.segments().length + " num seg = " +
+      // bc.numberOfSegments());
+      // }
    }
 
    // public static void main(String[] args) {
