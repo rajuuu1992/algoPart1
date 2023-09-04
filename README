@@ -1,0 +1,11 @@
+ADD required classes to CLASSPATH, if doesn't work use below
+
+
+
+Compile
+Include algs4.jar (edu.cs.princeton...)
+
+$ javac -cp "..\algs4.jar" .\Solver.java
+
+Run
+$ java -cp "..\algs4.jar;"  .\Solver.java 1~
